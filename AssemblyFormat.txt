@@ -1,0 +1,30 @@
+#We attempted to imitate  MARS as much as possible
+.data 	#.data is necessary before any data section, endline (\n) is necessary after .data
+	#Supports .word, .half, .byte, .space, .ascii, .asciiz
+	#Supports decimal, hexadecimal, characters, strings, labels, and special characters (such as \n, \r, \\, \", \', etc.)
+.word 54, label , 0xfff103 ,  'b'#space between directive and the number/label/character after it is necessary
+	#Each new line in the data section has to start with either a label or a directive
+someLabel: .byte 2,6, 3, 's', 0x4f	, '\0'  ,  '\n' #space between label and directive is necessary
+label: .asciiz "Some string" , "some other \"string\"\n", "yet another string"
+.space 10
+
+label2: 
+		.half 63,0xffff  , 20
+
+
+.text #.text is necessary
+
+.globl main #Not necessary, but supported
+
+#comment containing the words .data and .text no problem
+
+#Each new line in the text segment has to start with either a label or an instruction
+
+main:
+		add $t0, $t1, $t2 #Supports register names and numbers
+label3: 		li $s0, 5
+	
+		la	 $s1, 	label
+	move $s5 , $s1
+		subi $t0  , $t1 , 8   #Supports pseudo instructions li, la, move, and subi
+			addi $t4, $t5, 0x3f4c
